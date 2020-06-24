@@ -4,16 +4,7 @@ $(function () {
         data: function () {
             return {
                 bizID: 2,
-                bizList: [
-                    {
-                        "bk_biz_id": 2,
-                        "bk_biz_name": "蓝鲸"
-                    },
-                    {
-                        "bk_biz_id": 3,
-                        "bk_biz_name": "测试业务"
-                    }
-                ],
+                bizList: [],
                 hostID: "123.123.123.123",
                 hostList: [
                     {
@@ -52,5 +43,38 @@ $(function () {
                 ]
             }
         },
+        methods: {
+            getBizList () {
+               $.ajax({
+                    type: "get",
+                    url: '{% url "getBizList" %}', // site_url + 'release_task/'
+                    // data: JSON.stringify({
+                    //     bk_biz_id: 2
+                    // }),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function(res) {
+                        this.bizList = [];
+                        for (var i =0; i<res.length;i++) {
+                            var obj = {
+                                'bk_biz_id': res[i]['bk_biz_id'],
+                                'bk_biz_name': res[i]['bk_biz_name']
+                            };
+                            this.bizList.push(obj)
+                        }
+                        console.log('bizList:');
+                        console.log(this.bizList)
+                    }
+                })
+            },
+        },
+        mounted () {
+            alert('created');
+            this.getBizList()
+        },
+        created () {
+            alert('created');
+            this.getBizList()
+        }
     })
 });

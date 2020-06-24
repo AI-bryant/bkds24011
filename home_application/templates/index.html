@@ -60,7 +60,7 @@
                             <h3>服务发布</h3>
                             <bk-form form-type="inline">
                                 <bk-form-item label="业务">
-                                    <bk-select v-model="bizID" style="width: 250px;" :clearable="false">
+                                    <bk-select id="bizList" v-model="bizID" style="width: 250px;" :clearable="true">
                                         <bk-option v-for="biz in bizList"
                                             :key="biz.bk_biz_id"
                                             :id="biz.bk_biz_id"
@@ -144,6 +144,34 @@
     <script src="https://magicbox.bk.tencent.com/static_api/v3/components_vue/2.0/bk-magic-vue.js"></script>
 
     <script src="{{ STATIC_URL }}exam/index.js"></script>
+    <script>
+            // 获取业务列表
+            // $.ajax({
+            //     type: "get",
+            //     url: '{% url "getBizList" %}', // site_url + 'release_task/'
+            //     // data: JSON.stringify({
+            //     //     bk_biz_id: 2
+            //     // }),
+            //     contentType: "application/json",
+            //     dataType: "json",
+            //     success: function(res) {
+            //         this.bizList = []
+            //         var html = ''
+            //         for (var i =0; i<res.length;i++) {
+            //             var obj = {
+            //                 'bk_biz_id': res[i]['bk_biz_id'],
+            //                 'bk_biz_name': res[i]['bk_biz_name']
+            //             }
+            //             html += '<bk-option key=' + res[i]['bk_biz_id'] + ' id=' + res[i]['bk_biz_id'] +' name=' + res[i]['bk_biz_name'] + '></bk-option>'
+            //             this.bizList.push(obj)
+            //         }
+            //         $('#bizList').html(html)
+            //         console.log('this.bizList:')
+            //         console.log(this.bizList)
+            //     }
+            // })
 
+
+    </script>
 </body>
 </html>
