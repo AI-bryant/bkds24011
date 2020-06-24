@@ -45,3 +45,13 @@ def getBizList(request):
     data = business_list['data']['info']
     item = data
     return HttpResponse(json.dumps(item))
+
+
+# 根据条件查询主机
+def getHost(request):
+    bk_biz_id = request.GET.get('bk_biz_id')
+    client = get_client_by_request(request)
+    business_list = client.cc.search_host({'bk_biz_id': bk_biz_id, 'bk_supplier_account': 0})
+    data = business_list['data']['info']
+    items = data
+    return HttpResponse(json.dumps(items))
