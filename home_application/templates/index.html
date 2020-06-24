@@ -80,7 +80,7 @@
                                 </bk-form-item>
 
                                 <bk-form-item>
-                                    <bk-button theme="success" title="发布">开始发布</bk-button>
+                                    <bk-button theme="success" title="发布" @click="submitJob()">开始发布</bk-button>
                                 </bk-form-item>
                             </bk-form>
                         </div>
@@ -153,6 +153,7 @@
                 hostID: "",
                 hostList: [],
                 statusFilter: 'ALL',
+                defaultMessage: '正在发布服务',
                 releaseTasks: [
                     {
                         "task_id": 27,
@@ -223,6 +224,12 @@
                             _this.hostID = _this.hostList[0]['bk_host_outerip']
                         }
                     }
+                })
+            },
+            submitJob () {
+                this.$bkMessage({
+                    message: this.defaultMessage,
+                    offsetY: 80
                 })
             }
         },
