@@ -36,9 +36,9 @@ DATABASES.update(
     {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': '',  # 数据库名
-            'USER': '',  # 数据库用户
-            'PASSWORD': '',  # 数据库密码
+            'NAME': 'bkds24011_t',  # 数据库名
+            'USER': 'bkds24011',  # 数据库用户
+            'PASSWORD': 'BlueKing2020',  # 数据库密码
             'HOST': '',  # 数据库主机
             'PORT': '3306',  # 数据库端口
         },
