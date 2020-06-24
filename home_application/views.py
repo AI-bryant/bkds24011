@@ -81,4 +81,9 @@ def startTask(request):
     }
     resq = client.sops.create_task(reqData)
     task_id = resq['data']['task_id']
-    return HttpResponse(json.dumps(task_id))
+    goData = {
+        'bk_biz_id': bk_biz_id,
+        'task_id': task_id
+    }
+    gResp = client.sops.start_task(goData)
+    return HttpResponse(json.dumps(gResp))
