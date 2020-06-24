@@ -16,7 +16,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = (
-    url(r'^$', views.home),
+    url(r'^$', views.home, name='home'),
+    url(r'^query/$', views.query, name='query'),
     url(r'^getHost/$', views.getHost, name='getHost'),
     url(r'^getBizList/$', views.getBizList, name='getBizList'),
     url(r'^dev-guide/$', views.dev_guide),

@@ -23,6 +23,12 @@ def home(request):
     """
     return render(request, 'index.html')
 
+def query(request):
+    """
+    首页
+    """
+    return render(request, 'query.html')
+
 
 def dev_guide(request):
     """

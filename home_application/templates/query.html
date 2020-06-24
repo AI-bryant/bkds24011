@@ -36,14 +36,14 @@
                         </a>
                     </div>
                     <ul class="nav navbar-nav pull-left">
-                        <li ><a href="index.html">服务发布</a></li>
-                        <li class="active"><a href="query.html">数据查询</a></li>
+                        <li class="active"><a href="{% url 'home' %}">服务发布</a></li>
+                        <li><a href="{% url 'query' %}">数据查询</a></li>
                     </ul>
                     <div class="navbar-header pull-right">
                         <ul class="nav">
                             <li class="user-info">
                                 <a href="javascript:">
-                                    <span>exam_user</span>
+                                    <span>{{user}}</span>
                                 </a>
                             </li>
                         </ul>
