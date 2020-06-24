@@ -61,3 +61,24 @@ def getHost(request):
     data = business_list['data']['info']
     items = data
     return HttpResponse(json.dumps(items))
+
+# 标准运维下发
+def startTask(request):
+    bk_biz_id = request.GET.get('bk_biz_id')
+    bk_inner_ip = request.GET.get('bk_inner_ip')
+    bk_cloud_id = request.GET.get('bk_cloud_id')
+    client = get_client_by_request(request)
+    reqData = {
+        'bk_biz_id': bk_biz_id,
+        'template_id': '10001',
+        'template_source': 'common',
+        'name': 'exam',
+        'constants': {
+            '${server_ip}': bk_inner_ip,
+            '${server_port}': 10000,
+            '${bk_cloud_id}': bk_cloud_id
+        }
+    }
+    resq = client.sops.create_task(reqData)
+    task_id = resq['data']['task_id']
+    return HttpResponse(json.dumps(task_id))
