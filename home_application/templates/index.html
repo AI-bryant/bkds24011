@@ -60,7 +60,7 @@
                             <h3>服务发布</h3>
                             <bk-form form-type="inline">
                                 <bk-form-item label="业务">
-                                    <bk-select id="bizList" v-model="bizID" style="width: 250px;" :clearable="true" @selected="getHostByBiz(biz.bk_biz_id)">
+                                    <bk-select id="bizList" v-model="bizID" style="width: 250px;" :clearable="true" @selected="getHostByBiz()">
                                         <bk-option v-for="biz in bizList"
                                             :key="biz.bk_biz_id"
                                             :id="biz.bk_biz_id"
@@ -70,7 +70,7 @@
                                 </bk-form-item>
 
                                 <bk-form-item label="主机">
-                                    <bk-select v-model="hostID" style="width: 250px;" :clearable="false">
+                                    <bk-select v-model="hostID" style="width: 250px;" :clearable="true">
                                         <bk-option v-for="host in hostList"
                                             :key="host.bk_host_outerip"
                                             :id="host.bk_host_outerip"
@@ -150,19 +150,8 @@
             return {
                 bizID: 2,
                 bizList: [],
-                hostID: "123.123.123.123",
-                hostList: [
-                    {
-                        "bk_host_innerip": "10.0.0.1",
-                        "bk_host_outerip": "123.123.123.123",
-                        "bk_cloud_id": 1
-                    },
-                    {
-                        "bk_host_innerip": "10.0.0.2",
-                        "bk_host_outerip": "123.123.123.124",
-                        "bk_cloud_id": 0
-                    }
-                ],
+                hostID: "",
+                hostList: [],
                 statusFilter: 'ALL',
                 releaseTasks: [
                     {
@@ -207,22 +196,32 @@
                                 'bk_biz_name': res[i]['bk_biz_name']
                             };
                             _this.bizList.push(obj);
-                            console.log(this.bizList)
+                            _this.bizID = _this.bizList[0]['bk_biz_id']
                         }
                     }
                 })
             },
-            getHostByBiz (bk_biz_id) {
+            getHostByBiz () {
+                var _this = this;
                 $.ajax({
                     type: "get",
-                    url: '{% url "getHost" %}', // site_url + 'release_task/'
-                    data: JSON.stringify({
-                        bk_biz_id: bk_biz_id
-                    }),
+                    url: 'getHost/?bk_biz_id=' + _this.bizID,// '{% url "getHost" %}', // site_url + 'release_task/'
+                    // data: JSON.stringify({
+                    //     bk_biz_id: _this.bizID
+                    // }),
                     contentType: "application/json",
                     dataType: "json",
                     success: function(res) {
-                        console.log(res)
+                        _this.hostList = [];
+                        for (var i = 0; i<res.length; i++) {
+                            var obj = {
+                                "bk_host_innerip": res[i]['host']['bk_host_innerip'],
+                                "bk_host_outerip": res[i]['host']['bk_host_outerip'],
+                                "bk_cloud_id": res[i]['host']['bk_cloud_id'],
+                            };
+                            _this.hostList.push(obj);
+                            _this.hostID = _this.hostList[0]['bk_host_outerip']
+                        }
                     }
                 })
             }
