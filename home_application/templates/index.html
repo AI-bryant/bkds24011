@@ -232,18 +232,16 @@
                     message: this.defaultMessage,
                     offsetY: 80
                 });
-                var bk_inner_ip = '';
                 var bk_cloud_id = 1;
                 for (var i = 0 ; i< this.hostList.length; i++) {
-                    if (this.hostID === this.hostList[i]['bk_host_outerip']) {
-                        bk_inner_ip = this.hostList[i]['bk_inner_ip'];
+                    if (this.hinner_ip === this.hostList[i]['bk_host_innerip']) {
                         bk_cloud_id = this.hostList[i]['bk_cloud_id']
                     }
                 }
                 var _this = this;
                 $.ajax({
                     type: "get",
-                    url: 'startTask/?bk_biz_id=' + _this.bizID + '&bk_inner_ip=' + bk_inner_ip + '&bk_cloud_id=' + bk_cloud_id,
+                    url: 'startTask/?bk_biz_id=' + _this.bizID + '&bk_inner_ip=' + _this.hinner_ip + '&bk_cloud_id=' + bk_cloud_id,
                     // data: JSON.stringify({
                     //     bk_biz_id: _this.bizID
                     // }),
