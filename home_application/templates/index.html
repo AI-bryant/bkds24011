@@ -70,11 +70,11 @@
                                 </bk-form-item>
 
                                 <bk-form-item label="主机">
-                                    <bk-select v-model="hostID" style="width: 250px;" :clearable="true">
+                                    <bk-select v-model="hinner_ip" style="width: 250px;" :clearable="true">
                                         <bk-option v-for="host in hostList"
-                                            :key="host.bk_inner_ip"
-                                            :id="host.bk_inner_ip"
-                                            :name="host.bk_inner_ip">
+                                            :key="host.bk_host_innerip"
+                                            :id="host.bk_host_innerip"
+                                            :name="host.bk_host_innerip">
                                         </bk-option>
                                     </bk-select>
                                 </bk-form-item>
@@ -151,6 +151,7 @@
                 bizID: 2,
                 bizList: [],
                 hostID: "",
+                hinner_ip: '',
                 hostList: [],
                 statusFilter: 'ALL',
                 defaultMessage: '正在发布服务',
