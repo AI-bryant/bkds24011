@@ -72,9 +72,9 @@
                                 <bk-form-item label="主机">
                                     <bk-select v-model="hostID" style="width: 250px;" :clearable="true">
                                         <bk-option v-for="host in hostList"
-                                            :key="host.bk_host_outerip"
-                                            :id="host.bk_host_outerip"
-                                            :name="host.bk_host_outerip">
+                                            :key="host.bk_inner_ip"
+                                            :id="host.bk_inner_ip"
+                                            :name="host.bk_inner_ip">
                                         </bk-option>
                                     </bk-select>
                                 </bk-form-item>
@@ -231,7 +231,6 @@
                     message: this.defaultMessage,
                     offsetY: 80
                 });
-                debugger;
                 var bk_inner_ip = '';
                 var bk_cloud_id = 1;
                 for (var i = 0 ; i< this.hostList.length; i++) {
