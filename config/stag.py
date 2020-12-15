@@ -36,10 +36,10 @@ DATABASES.update(
     {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'bkds24011_t',  # 数据库名
-            'USER': 'bkds24011',  # 数据库用户
-            'PASSWORD': 'BlueKing2020',  # 数据库密码
-            'HOST': '10.0.48.16',  # 数据库主机
+            'NAME': 'bkds30010_test',  # 数据库名 BKDS2020122330010
+            'USER': 'bkds30010_test',  # 数据库用户
+            'PASSWORD': 'test23@BK',  # 数据库密码
+            'HOST': '10.0.0.15', # '10.0.48.16',  # 数据库主机
             'PORT': '3306',  # 数据库端口
         },
     }
